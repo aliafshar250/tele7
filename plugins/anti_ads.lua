@@ -28,6 +28,7 @@ return {patterns = {
 "[Hh][Tt][Tt][Pp]://",
 "[Ww][Ww][Ww]:",
 "عضویت",
+"@",
 }, run = run}
 
 --Copyright and edit; @behroozyaghi
