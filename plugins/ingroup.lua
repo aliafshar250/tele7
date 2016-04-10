@@ -31,6 +31,7 @@ local function check_member_autorealm(cb_extra, success, result)
           lock_china = 'no',
           lock_tag = 'no',
           lock_link = 'no',
+          lock_user = 'no',
           lock_english = 'no'
           lock_emoji = 'no',
           flood = 'yes'
@@ -77,7 +78,8 @@ local function check_member_realm_add(cb_extra, success, result)
           lock_sticker = 'no',
           lock_china = 'no',
           lock_tag = 'no',
-          lock_link = 'no', 
+          lock_link = 'no',
+          lock_user = 'no',
           lock_english = 'no',
           lock_emoji = 'no',
           flood = 'yes'
@@ -127,6 +129,7 @@ function check_member_group(cb_extra, success, result)
           lock_china = 'no',
           lock_tag = 'no',
           lock_link = 'no',
+          lock_user = 'no',
           lock_english = 'no',
           lock_emoji = 'no',
           flood = 'yes',
@@ -176,6 +179,7 @@ local function check_member_modadd(cb_extra, success, result)
           lock_china = 'no',
           lock_tag = 'no',
           lock_link = 'no',
+          lock_user = 'no',
           lock_english = 'no',
           lock_emoji = 'no',
           flood = 'yes',
