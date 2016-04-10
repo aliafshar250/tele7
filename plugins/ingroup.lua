@@ -20,6 +20,7 @@ local function check_member_autorealm(cb_extra, success, result)
           lock_photo = 'no',
           lock_member = 'no',
           lock_chat = 'no',
+          lock_share = 'no',
           lock_emoji = 'no',
           flood = 'yes'
         }
@@ -55,6 +56,7 @@ local function check_member_realm_add(cb_extra, success, result)
           lock_photo = 'no',
           lock_member = 'no',
           lock_chat = 'no',
+          lock_share ='no',
           lock_emoji = 'no',
           flood = 'yes'
         }
@@ -92,6 +94,7 @@ function check_member_group(cb_extra, success, result)
           lock_photo = 'no',
           lock_member = 'no',
           lock_chat = 'no',
+          lock_share = 'no',
           lock_emoji = 'no',
           flood = 'yes',
         }
@@ -129,6 +132,7 @@ local function check_member_modadd(cb_extra, success, result)
           lock_photo = 'no',
           lock_member = 'no',
           lock_chat = 'no',
+          lock_share = 'no',
           lock_emoji = 'no',
           flood = 'yes',
         }
@@ -224,7 +228,7 @@ local function show_group_settingsmod(msg, data, target)
     	leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "›Group Settings:\n•••Kick new member with link : "..settings.lock_join.."\n•••Lock group Fosh : "..settings.antifosh.."\n•••Lock group chat : "..settings.lock_chat.."\n•••Lock group ads : "..settings.antiads.."\n•••Lock group name : "..settings.lock_name.."\n•••Lock group photo : "..settings.lock_photo.."\n•••kick new member : "..settings.lock_member.."\n•••Lock leave ban : "..settings.lock_emoji.."\n•••Lock group emoji : "..leave_ban.."\n•••flood set on : "..NUM_MSG_MAX.."\n•••Bot can come : "king bot ... sudo:🌟@mehdisudo🌟"
+  local text = "›Group Settings:\n•••Kick new member with link : "..settings.lock_join.."\n•••Lock group Fosh : "..settings.antifosh.."\n•••Lock group chat : "..settings.lock_chat.."\n•••Lock group ads : "..settings.antiads.."\n•••Lock group name : "..settings.lock_name.."\n•••Lock group photo .settings.lock_photo.."\n•••kick new member : "..settings.lock_member.."\n•••Lock leave ban : "..settings.lock_emoji.."\n•••Lock group emoji : "..settings.lock_share.."\n•••Lock group share : "..leave_ban.."\n•••flood set on : "..NUM_MSG_MAX.."\n•••Bot can come : "king bot ... sudo:🌟@mehdisudo🌟"
   return text
 end
 
@@ -351,6 +355,32 @@ else
 data[tostring(target)]['settings']['lock_emoji'] = 'no'
 save_data(_config.moderation.data, data)
 return 'emoji has been unlocked'
+end
+end
+local function lock_group_share(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_share_lock = data[tostring(target)]['settings']['lock_share']
+if group_share_lock == 'yes' then
+return 'share is already locked'
+else
+data[tostring(target)]['settings']['lock_share'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'share has been locked'
+end
+end
+local function unlock_group_share(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_share_lock = data[tostring(target)]['settings']['lock_share']
+if group_share_lock == 'no' then
+return 'share is already unlocked'
+else
+data[tostring(target)]['settings']['lock_share'] = 'no'
+save_data(_config.moderation.data, data)
+return 'share has been unlocked'
 end
 end 
 local function lock_group_join(msg, data, target)
@@ -1112,6 +1142,10 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked chat ")
         return lock_group_chat(msg, data, target)
       end
+      if matches[2] == 'share' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked share ")
+        return lock_group_share(msg, data, target)
+      end 
       if matches[2] == 'bots' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked bots ")
         return lock_group_bots(msg, data, target)
@@ -1162,6 +1196,10 @@ local function run(msg, matches)
       if matches[2] == 'chat' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked chat ")
         return unlock_group_chat(msg, data, target)
+      end 
+      if matches[2] == 'share' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked share ")
+        return unlock_group_share(msg, data, target)
       end
 	  if matches[2] == 'ads' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked ads ")
