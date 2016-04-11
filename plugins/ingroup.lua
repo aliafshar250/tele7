@@ -276,7 +276,7 @@ local function show_group_settingsmod(msg, data, target)
     	leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "›Group Settings:\n🌟Lock group link : "..settings.lock_join.."\n🌟Lock group Fosh : "..settings.antifosh.."\n🌟Lock group chat : "..settings.lock_chat.."\n🌟Lock group ads : "..settings.antiads.."\n🌟Lock group name : "..settings.lock_name.."\n🌟Lock group photo : "..settings.lock_photo.."\n🌟kick new member : "..settings.lock_member.."\n🌟Lock leave ban : "..settings.lock_emoji.."\n🌟Lock group emoji : "..settings.lock_share.."\n🌟Lock group share :  "..settings.lock_pars.."\n🌟Lock group pars : "..settings.lock_english.."\n🌟Lock group english : "..leave_ban.."\n🌟floodings spam : "..NUM_MSG_MAX.."\n•••Bot can come : ".."
+  local text = "›🔥Group Settings🔥:\nLocked groups : "..settings.lock_join.."\n⚙Lock group Fosh : "..settings.antifosh.."\n⚙Lock group chat : "..settings.lock_chat.."\n⚙Lock group ads : "..settings.lock_china.."\n⚙Lock group china : "..settings.antiads.."\n⚙Lock group name : "..settings.lock_name.."\n⚙Lock group photo : "..settings.lock_photo.."\n⚙kick new member : "..settings.lock_member.."\n⚙Lock leave ban : "..settings.lock_emoji.."\n⚙Lock group emoji : "..settings.lock_share.."\n⚙Lock group share :  "..settings.lock_video.."\n⚙Lock group video :  "..settings.lock_audio.."\n⚙Lock group audio : "..settings.lock_ph.."\n⚙Lock group ph : "..settings.lock_media.."\n⚙Lock group media :  "..settings.lock_tag.."\n⚙Lock group tag : "..settings.lock_link.."\n⚙Lock group link : "..settings.lock_sticker.."\n⚙Lock group sticker : "..settings.lock_user.."\n⚙Lock group user : "..settings.lock_gif.."\n⚙Lock group gif : "..settings.lock_pars.."\n⚙Lock group pars : "..settings.lock_english.."\n⚙Lock group english : "..leave_ban.."\n⚙floodings spam : "..NUM_MSG_MAX.."\n•••Bot can come : ".."
   return text
 end
 
@@ -431,6 +431,240 @@ save_data(_config.moderation.data, data)
 return 'persian has been unlocked'
 end
 end
+local function lock_group_video(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_video_lock = data[tostring(target)]['settings']['lock_video']
+if group_video_lock == 'yes' then
+return 'video is already locked'
+else
+data[tostring(target)]['settings']['lock_video'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'video has been locked'
+end
+end
+local function unlock_group_video(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_video_lock = data[tostring(target)]['settings']['lock_video']
+if group_video_lock == 'no' then
+return 'video is already unlocked'
+else
+data[tostring(target)]['settings']['lock_video'] = 'no'
+save_data(_config.moderation.data, data)
+return 'video has been unlocked'
+end
+end
+local function lock_group_ph(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_ph_lock = data[tostring(target)]['settings']['lock_ph']
+if group_ph_lock == 'yes' then
+return 'photos is already locked'
+else
+data[tostring(target)]['settings']['lock_ph'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'photos has been locked'
+end
+end
+local function unlock_group_ph(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_ph_lock = data[tostring(target)]['settings']['lock_ph']
+if group_ph_lock == 'no' then
+return 'photos is already unlocked'
+else
+data[tostring(target)]['settings']['lock_ph'] = 'no'
+save_data(_config.moderation.data, data)
+return 'photos has been unlocked'
+end
+end
+local function lock_group_media(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_media_lock = data[tostring(target)]['settings']['lock_media']
+if group_media_lock == 'yes' then
+return 'media is already locked'
+else
+data[tostring(target)]['settings']['lock_media'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'media has been locked'
+end
+end
+local function unlock_group_media(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_media_lock = data[tostring(target)]['settings']['lock_media']
+if group_media_lock == 'no' then
+return 'media is already unlocked'
+else
+data[tostring(target)]['settings']['lock_media'] = 'no'
+save_data(_config.moderation.data, data)
+return 'media has been unlocked'
+end
+end
+local function lock_group_gif(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_gif_lock = data[tostring(target)]['settings']['lock_gif']
+if group_gif_lock == 'yes' then
+return 'gifs is already locked'
+else
+data[tostring(target)]['settings']['lock_gif'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'gifs has been locked'
+end
+end
+local function unlock_group_gif(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_gif_lock = data[tostring(target)]['settings']['lock_gif']
+if group_gif_lock == 'no' then
+return 'gifs is already unlocked'
+else
+data[tostring(target)]['settings']['lock_gif'] = 'no'
+save_data(_config.moderation.data, data)
+return 'gifs has been unlocked'
+end
+end
+local function lock_group_sticker(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
+if group_sticker_lock == 'yes' then
+return 'stickers is already locked'
+else
+data[tostring(target)]['settings']['lock_sticker'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'stickers has been locked'
+end
+end
+local function unlock_group_sticker(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
+if group_sticker_lock == 'no' then
+return 'stickers is already unlocked'
+else
+data[tostring(target)]['settings']['lock_sticker'] = 'no'
+save_data(_config.moderation.data, data)
+return 'stickers has been unlocked'
+end
+end
+local function lock_group_china(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_emoji_lock = data[tostring(target)]['settings']['lock_china']
+if group_china_lock == 'yes' then
+return 'china is already locked'
+else
+data[tostring(target)]['settings']['lock_china'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'china has been locked'
+end
+end
+local function unlock_group_china(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_china_lock = data[tostring(target)]['settings']['lock_china']
+if group_china_lock == 'no' then
+return 'china is already unlocked'
+else
+data[tostring(target)]['settings']['lock_china'] = 'no'
+save_data(_config.moderation.data, data)
+return 'china has been unlocked'
+end
+end
+local function lock_group_user(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_user_lock = data[tostring(target)]['settings']['lock_user']
+if group_user_lock == 'yes' then
+return 'users is already locked'
+else
+data[tostring(target)]['settings']['lock_user'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'users has been locked'
+end
+end
+local function unlock_group_user(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_user_lock = data[tostring(target)]['settings']['lock_user']
+if group_user_lock == 'no' then
+return 'users is already unlocked'
+else
+data[tostring(target)]['settings']['lock_user'] = 'no'
+save_data(_config.moderation.data, data)
+return 'users has been unlocked'
+end
+end 
+local function lock_group_audio(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_audio_lock = data[tostring(target)]['settings']['lock_audio']
+if group_audio_lock == 'yes' then
+return 'audios is already locked'
+else
+data[tostring(target)]['settings']['lock_audio'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'audios has been locked'
+end
+end
+local function unlock_group_audio(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_audio_lock = data[tostring(target)]['settings']['lock_audio']
+if group_audio_lock == 'no' then
+return 'audios is already unlocked'
+else
+data[tostring(target)]['settings']['lock_audio'] = 'no'
+save_data(_config.moderation.data, data)
+return 'audios has been unlocked'
+end
+end 
+local function lock_group_tag(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_tag_lock = data[tostring(target)]['settings']['lock_tag']
+if group_tag_lock == 'yes' then
+return 'tags is already locked'
+else
+data[tostring(target)]['settings']['lock_tag'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'tags has been locked'
+end
+end
+local function unlock_group_tag(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_tag_lock = data[tostring(target)]['settings']['lock_tag']
+if group_tag_lock == 'no' then
+return 'tags is already unlocked'
+else
+data[tostring(target)]['settings']['lock_tag'] = 'no'
+save_data(_config.moderation.data, data)
+return 'tags has been unlocked'
+end
+end 
 local function lock_group_english(msg, data, target)
 if not is_momod(msg) then
 return "For moderators only!"
@@ -481,6 +715,32 @@ else
 data[tostring(target)]['settings']['lock_share'] = 'no'
 save_data(_config.moderation.data, data)
 return 'share has been unlocked'
+end
+end
+local function lock_group_link(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_link_lock = data[tostring(target)]['settings']['lock_link']
+if group_link_lock == 'yes' then
+return 'links is already locked'
+else
+data[tostring(target)]['settings']['lock_link'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'links has been locked'
+end
+end
+local function unlock_group_link(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_link_lock = data[tostring(target)]['settings']['lock_link']
+if group_link_lock == 'no' then
+return 'links is already unlocked'
+else
+data[tostring(target)]['settings']['lock_link'] = 'no'
+save_data(_config.moderation.data, data)
+return 'links has been unlocked'
 end
 end 
 local function lock_group_join(msg, data, target)
