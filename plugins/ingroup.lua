@@ -1172,6 +1172,18 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked chat ")
         return lock_group_chat(msg, data, target)
       end
+      if matches[2] == 'pars' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked pars ")
+        return lock_group_pars(msg, data, target)
+      end
+      if matches[2] == 'english' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked english ")
+        return lock_group_english(msg, data, target)
+      end
+      if matches[2] == 'emoji' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked chat ")
+        return lock_group_emoji(msg, data, target)
+      end 
       if matches[2] == 'bots' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked bots ")
         return lock_group_bots(msg, data, target)
@@ -1215,6 +1227,18 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked chat ")
         return unlock_group_chat(msg, data, target)
       end
+      if matches[2] == 'pars' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked pars ")
+        return unlock_group_pars(msg, data, target)
+      end
+      if matches[2] == 'english' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked english ")
+        return unlock_group_english(msg, data, target)
+      end
+      if matches[2] == 'emoji' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked emoji ")
+        return unlock_group_emoji(msg, data, target)
+      end 
 	  if matches[2] == 'ads' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked ads ")
         return unlock_group_ads(msg, data, target)
