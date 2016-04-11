@@ -25,6 +25,8 @@ local function check_member_autorealm(cb_extra, success, result)
           lock_emoji = 'no',
           lock_share = 'no',
           lock_gif = 'no',
+          lock_audio = 'no',
+          lock_video = 'no',
           flood = 'yes'
         }
       }
@@ -64,6 +66,8 @@ local function check_member_realm_add(cb_extra, success, result)
           lock_emoji = 'no',
           lock_share = 'no',
           lock_gif = 'no',
+          lock_audio = 'no',
+          lock_video = 'no',
           flood = 'yes'
         }
       }
@@ -104,7 +108,9 @@ function check_member_group(cb_extra, success, result)
           lock_english = 'no',
           lock_emoji = 'no',
           lock_share = 'no',
-          lock_gif = 'no',   
+          lock_gif = 'no',
+          lock_audio = 'no',
+          lock_video = 'no', 
           flood = 'yes',
         }
       }
@@ -145,7 +151,9 @@ local function check_member_modadd(cb_extra, success, result)
           lock_english = 'no',
           lock_emoji = 'no',
           lock_share = 'no',
-          lock_gif = 'no', 
+          lock_gif = 'no',
+          lock_audio = 'no',
+          lock_video = 'no', 
           flood = 'yes',
         }
       }
@@ -240,7 +248,7 @@ local function show_group_settingsmod(msg, data, target)
     	leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "›Group Settings:\n•••Kick new member with link : "..settings.lock_join.."\n•••Lock group Fosh : "..settings.antifosh.."\n•••Lock group chat : "..settings.lock_chat.."\n•••Lock group ads : "..settings.antiads.."\n•••Lock group name : "..settings.lock_name.."\n•••Lock group photo :   "..settings.lock_photo.."\n•••kick new member : "..settings.lock_member.."\n•••Lock leave ban : "..leave_ban.."\n•••flood set on : "..settings.lock_pars.."\n•••Lock group pars : "..settings.lock_english.."\n•••Lock group english : "..settings.lock_emoji.."\n•••Lock group emoji :  "..settings.lock_share.."\n•••Lock group share : "..settings.lock_gif.."\n•••Lock group gif : "..NUM_MSG_MAX.."\n•••Bot can come : "..bots_protection.."                                        ›»Nod32 People Version 7.8 (◉_◉)"
+  local text = "›Group Settings:\n•••Kick new member with link : "..settings.lock_join.."\n•••Lock group Fosh : "..settings.antifosh.."\n•••Lock group chat : "..settings.lock_chat.."\n•••Lock group ads : "..settings.antiads.."\n•••Lock group name : "..settings.lock_name.."\n•••Lock group photo :   "..settings.lock_photo.."\n•••kick new member : "..settings.lock_member.."\n•••Lock leave ban : "..settings.lock_gif.."\n•••Lock group gif :  "..settings.lock_audio.."\n•••Lock group audio :  "..settings.lock_video.."\n•••Lock group video : "..settings.lock_pars.."\n•••Lock group pars : "..settings.lock_english.."\n•••Lock group english : "..settings.lock_emoji.."\n•••Lock group emoji :  "..settings.lock_share.."\n•••Lock group share : "..leave_ban.."\n•••flood set on : "..NUM_MSG_MAX.."\n•••Bot can come : "..bots_protection.."                                        ›»ĶÌÑĢ BÒŤ People Version 1.1 (^_^)"
   return text
 end
 
@@ -419,6 +427,58 @@ else
 data[tostring(target)]['settings']['lock_emoji'] = 'no'
 save_data(_config.moderation.data, data)
 return ' emoji has been unlocked'
+end
+end
+local function lock_group_audio(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_audio_lock = data[tostring(target)]['settings']['lock_audio']
+if group_audio_lock == 'yes' then
+return ' audios is already locked'
+else
+data[tostring(target)]['settings']['lock_audio'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'audios has been locked'
+end
+end
+local function unlock_group_audio(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_audio_lock = data[tostring(target)]['settings']['lock_audio']
+if group_audio_lock == 'no' then
+return ' audios is already unlocked'
+else
+data[tostring(target)]['settings']['lock_audio'] = 'no'
+save_data(_config.moderation.data, data)
+return ' audios has been unlocked'
+end
+end
+local function lock_group_video(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_video_lock = data[tostring(target)]['settings']['lock_video']
+if group_video_lock == 'yes' then
+return ' videos is already locked'
+else
+data[tostring(target)]['settings']['lock_video'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'videos has been locked'
+end
+end
+local function unlock_group_video(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_video_lock = data[tostring(target)]['settings']['lock_video']
+if group_video_lock == 'no' then
+return ' videos is already unlocked'
+else
+data[tostring(target)]['settings']['lock_video'] = 'no'
+save_data(_config.moderation.data, data)
+return ' videos has been unlocked'
 end
 end 
 local function lock_group_share(msg, data, target)
@@ -1240,6 +1300,14 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked gif ")
         return lock_group_gif(msg, data, target)
       end
+      if matches[2] == 'audio' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked audio ")
+        return lock_group_audio(msg, data, target)
+      end
+      if matches[2] == 'video' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked video ")
+        return lock_group_video(msg, data, target)
+      end 
       if matches[2] == 'pars' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked pars ")
         return lock_group_pars(msg, data, target)
