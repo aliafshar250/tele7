@@ -321,7 +321,7 @@ ch: @Nod32team
 
 ]],
     help_text = [[
-NOD32 Commands list :
+ĶÌÑĢ BÒŤ Commands list :
  
 1-banhammer list ^
  
@@ -399,43 +399,10 @@ NOD32 Commands list :
 !help
 لیست دستورات ربات
 
-6-Security Group ^
+6_settings ^
 
-!lock member 
-قفل ورود اعضا جدید
-
-!lock join
-قفل ورود اعضا جدید توسط لینک
-
-!lock name
-قفل اسم گروه
-
-!lock chat
-قفل چت ممنوع
-
-!lock ads
-قفل تبلیغات
-
-!lock leave
-قفل خروج=بن گروه
-
-!lock fosh
-ممنوع کردن فحش
-
-!lock chat
-قفل چت ممنوع گروه
-
-!antibot enable 
-ورود ربات ها ممنوع
-
-!antibot disable
-ورود ربات ها ازاد
-
-!unlock xxxx
-[*name*leave*member]
-[*fosh*ads]
-[chat*join*photo]
-باز کردن دستورات قفل شده
+!helpsettings
+نمایش دستورات سیتینگ
 
 7-Fun time ^
 
@@ -509,18 +476,12 @@ NOD32 Commands list :
 دعوت سازنده ربات به گروه
 (در صورت وجود مشکل)
 
-!version
-ورژن ربات
-
 !feedback (text)
 ارسال نظرات به سازنده
 
 you can use both "/" and "!" 
 .شما میتوانید از ! و / استفاده کنید
 
-channel: @Nod32Team
-
-G00D LUCK ^_^
 ]]
    }
   serialize_to_file(config, './data/config.lua')
