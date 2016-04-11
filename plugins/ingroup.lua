@@ -387,6 +387,58 @@ save_data(_config.moderation.data, data)
 return ' persian has been unlocked'
 end
 end
+local function lock_group_emoji(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_emoji_lock = data[tostring(target)]['settings']['lock_emoji']
+if group_emoji_lock == 'yes' then
+return ' emoji is already locked'
+else
+data[tostring(target)]['settings']['lock_emoji'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'emoji has been locked'
+end
+end
+local function unlock_group_emoji(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_emoji_lock = data[tostring(target)]['settings']['lock_emoji']
+if group_emoji_lock == 'no' then
+return ' emoji is already unlocked'
+else
+data[tostring(target)]['settings']['lock_emoji'] = 'no'
+save_data(_config.moderation.data, data)
+return ' emoji has been unlocked'
+end
+end 
+local function lock_group_english(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_engli_lock = data[tostring(target)]['settings']['lock_english']
+if group_english_lock == 'yes' then
+return ' english is already locked'
+else
+data[tostring(target)]['settings']['lock_english'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'english has been locked'
+end
+end
+local function unlock_group_english(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_english_lock = data[tostring(target)]['settings']['lock_english']
+if group_english_lock == 'no' then
+return ' english is already unlocked'
+else
+data[tostring(target)]['settings']['lock_english'] = 'no'
+save_data(_config.moderation.data, data)
+return ' english has been unlocked'
+end
+end 
 local function lock_group_ads(msg, data, target)
 if not is_momod(msg) then
 return "For moderators only!"
