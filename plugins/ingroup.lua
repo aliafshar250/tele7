@@ -33,6 +33,7 @@ local function check_member_autorealm(cb_extra, success, result)
           lock_media = 'no',
           lock_sticker = 'no',
           lock_china = 'no',
+          lock_self = 'no',
           flood = 'yes'
         }
       }
@@ -79,7 +80,8 @@ local function check_member_realm_add(cb_extra, success, result)
           lock_user = 'no',
           lock_media = 'no',
           lock_sticker = 'no',
-          lock_china = 'no', 
+          lock_china = 'no',
+          lock_self = 'no',
           flood = 'yes'
         }
       }
@@ -128,7 +130,8 @@ function check_member_group(cb_extra, success, result)
           lock_user = 'no',
           lock_media = 'no',
           lock_sticker = 'no',
-          lock_china = 'no', 
+          lock_china = 'no',
+          lock_self = 'no', 
           flood = 'yes',
         }
       }
@@ -178,6 +181,7 @@ local function check_member_modadd(cb_extra, success, result)
           lock_media = 'no',
           lock_sticker = 'no',
           lock_china = 'no',
+          lock_self = 'no',
           flood = 'yes',
         }
       }
@@ -272,7 +276,7 @@ local function show_group_settingsmod(msg, data, target)
     	leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "›🔥Group Settings🔥:\n⚙Lock group link/join : "..settings.lock_join.."\n⚙Lock group Fosh : "..settings.antifosh.."\n⚙Lock group chat : "..settings.lock_chat.."\n⚙Lock group ads : "..settings.antiads.."\n⚙Lock group name : "..settings.lock_name.."\n⚙Lock group photo :   "..settings.lock_photo.."\n⚙kick new member : "..settings.lock_member.."\n⚙Lock leave ban : "..settings.lock_tag.."\n⚙Lock group tag : "..settings.lock_user.."\n⚙Lock group user :  "..settings.lock_sticker.."\n⚙Lock group sticker : "..settings.lock_gif.."\n⚙Lock group gif :  "..settings.lock_ph.."\n⚙Lock group ph : "..settings.lock_audio.."\n⚙Lock group audio :  "..settings.lock_video.."\n⚙Lock group video : "..settings.lock_pars.."\n⚙Lock group pars : "..settings.lock_english.."\n⚙Lock group english : "..settings.lock_china.."\n⚙Lock group china : "..settings.lock_emoji.."\n⚙Lock group emoji :  "..settings.lock_share.."\n⚙Lock group share : "..settings.lock_media.."\n⚙Lock group media : "..leave_ban.."\n⚙flood set on : "..NUM_MSG_MAX.."\n⚙Bot can come : "..bots_protection.."                                        ›»ĶÌÑĢ BÒŤ People Version 1.1 (^_^)"
+  local text = "›🔥Group Settings🔥:\n⚙Lock group link/join : "..settings.lock_join.."\n⚙Lock group Fosh : "..settings.antifosh.."\n⚙Lock group chat : "..settings.lock_chat.."\n⚙Lock group ads : "..settings.antiads.."\n⚙Lock group name : "..settings.lock_name.."\n⚙Lock group photo :   "..settings.lock_photo.."\n⚙kick new member : "..settings.lock_member.."\n⚙Lock leave ban : "..settings.lock_tag.."\n⚙Lock group tag : "..settings.lock_user.."\n⚙Lock group user :  "..settings.lock_sticker.."\n⚙Lock group sticker : "..settings.lock_gif.."\n⚙Lock group gif :  "..settings.lock_ph.."\n⚙Lock group ph : "..settings.lock_audio.."\n⚙Lock group audio :  "..settings.lock_video.."\n⚙Lock group video : "..settings.lock_pars.."\n⚙Lock group pars : "..settings.lock_english.."\n⚙Lock group english : "..settings.lock_china.."\n⚙Lock group china : "..settings.lock_emoji.."\n⚙Lock group emoji :  "..settings.lock_share.."\n⚙Lock group share : "..settings.lock_media.."\n⚙Lock group media : "..settings.lock_self.."\n⚙Lock group self/poker : "..leave_ban.."\n⚙flood set on : "..NUM_MSG_MAX.."\n⚙Bot can come : "..bots_protection.."                                        ›»ĶÌÑĢ BÒŤ People Version 1.1 (^_^)"
   return text
 end
 
@@ -583,6 +587,32 @@ save_data(_config.moderation.data, data)
 return ' media has been unlocked'
 end
 end
+local function lock_group_self(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_self_lock = data[tostring(target)]['settings']['lock_self']
+if group_self_lock == 'yes' then
+return ' self/poker is already locked'
+else
+data[tostring(target)]['settings']['lock_ph'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'self/poker has been locked'
+end
+end
+local function unlock_group_self(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_self_lock = data[tostring(target)]['settings']['lock_self']
+if group_self_lock == 'no' then
+return ' self/poker is already unlocked'
+else
+data[tostring(target)]['settings']['lock_self'] = 'no'
+save_data(_config.moderation.data, data)
+return ' self/poker has been unlocked'
+end
+end 
 local function lock_group_sticker(msg, data, target)
 if not is_momod(msg) then
 return "For moderators only!"
@@ -1472,6 +1502,10 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked chat ")
         return lock_group_chat(msg, data, target)
       end
+      if matches[2] == 'self' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked self ")
+        return lock_group_self(msg, data, target)
+      end 
       if matches[2] == 'media' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked media ")
         return lock_group_media(msg, data, target)
@@ -1567,6 +1601,10 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked chat ")
         return unlock_group_chat(msg, data, target)
       end
+      if matches[2] == 'self' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked self ")
+        return unlock_group_self(msg, data, target)
+      end 
       if matches[2] == 'media' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked media ")
         return unlock_group_media(msg, data, target)
