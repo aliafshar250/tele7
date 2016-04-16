@@ -245,28 +245,14 @@ function create_config( )
     "time",
     "version"
     },
-	    sudo_users = {145173448,137791771,},--Sudo users
+	    sudo_users = {158990680},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
     about_text = [[
-MEGA KING
-—---------------------------------
-A NEW BOT FOR MANAGE YOUR SUPERGROUPS.
-—---------------------------------
-@TEAM_KING_BOT
-—---------------------------------
-@mohammad20162015
-—---------------------------------
-@mehdisudo 
-—---------------------------------
-TNX FOR @SORBLACK AND @alireza_PT
-—---------------------------------
-CREATE TEAM BY MOHAMMAD
-—---------------------------------
-Bot version : 1.1 
-----------------------------------
-To shop groups be admins Recourse
-the
+https://github.com/BH-YAGHI/NOD32-BOT.git
+
+channel : @Nod32team
+sodu : @behrooZyaghi
 ]],
     help_text_realm = [[
 Realm Commands:
@@ -331,11 +317,11 @@ Only sudo users can run this command
 !bc 123456789 Hello !
 This command will send text to [group_id]
 
-ch: @Nod32team
+ch: @mehsidudi
 
 ]],
     help_text = [[
-ĶÌÑĢ BÒŤ Commands list :
+ĶÌÑĢ☆BÒŤ Commands list :
  
 1-banhammer list ^
  
@@ -408,16 +394,10 @@ ch: @Nod32team
 قوانین گروه
 
 !settings
-دیدن تنظیمات فعلی گروه
-
-!help
-لیست دستورات ربات
-
-6_settings ^
+مشاهده تنظیمات 
 
 !helpsettings
-نمایش دستورات سیتینگ
-
+نمایش دستورات ستینگ
 7-Fun time ^
 
 !time country city
@@ -490,12 +470,16 @@ ch: @Nod32team
 دعوت سازنده ربات به گروه
 (در صورت وجود مشکل)
 
+!version
+ورژن ربات
+
 !feedback (text)
 ارسال نظرات به سازنده
 
 you can use both "/" and "!" 
 .شما میتوانید از ! و / استفاده کنید
 
+ĶIÑĢ*BÒŤ
 ]]
    }
   serialize_to_file(config, './data/config.lua')
