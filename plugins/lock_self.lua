@@ -20,7 +20,7 @@ end
  
 return {
   patterns = {
-    "😐",
+    "(😐)",
     "(Bot was on :D)",
     "(Bot was off ;-/)",
     "(Reloaded!)",
