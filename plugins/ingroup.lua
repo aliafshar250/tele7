@@ -33,6 +33,7 @@ local function check_member_autorealm(cb_extra, success, result)
           lock_media = 'no',
           lock_sticker = 'no',
           lock_china = 'no',
+          lock_link = 'no',
           lock_self = 'no',
           flood = 'yes'
         }
@@ -81,6 +82,7 @@ local function check_member_realm_add(cb_extra, success, result)
           lock_media = 'no',
           lock_sticker = 'no',
           lock_china = 'no',
+          lock_link = 'no',
           lock_self = 'no',
           flood = 'yes'
         }
@@ -131,6 +133,7 @@ function check_member_group(cb_extra, success, result)
           lock_media = 'no',
           lock_sticker = 'no',
           lock_china = 'no',
+          lock_link = 'no',
           lock_self = 'no', 
           flood = 'yes',
         }
@@ -181,6 +184,7 @@ local function check_member_modadd(cb_extra, success, result)
           lock_media = 'no',
           lock_sticker = 'no',
           lock_china = 'no',
+          lock_link = 'no',
           lock_self = 'no',
           flood = 'yes',
         }
@@ -639,6 +643,32 @@ save_data(_config.moderation.data, data)
 return ' sticker has been unlocked'
 end
 end 
+local function lock_group_link(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_link_lock = data[tostring(target)]['settings']['lock_link']
+if group_link_lock == 'yes' then
+return ' links is already locked'
+else
+data[tostring(target)]['settings']['lock_link'] = 'yes'
+save_data(_config.moderation.data, data)
+return 'links has been locked'
+end
+end
+local function unlock_group_link(msg, data, target)
+if not is_momod(msg) then
+return "For moderators only!"
+end
+local group_link_lock = data[tostring(target)]['settings']['lock_link']
+if group_link_lock == 'no' then
+return ' links is already unlocked'
+else
+data[tostring(target)]['settings']['lock_link'] = 'no'
+save_data(_config.moderation.data, data)
+return ' links has been unlocked'
+end
+end   
 local function lock_group_china(msg, data, target)
 if not is_momod(msg) then
 return "For moderators only!"
@@ -1502,6 +1532,10 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked chat ")
         return lock_group_chat(msg, data, target)
       end
+      if matches[2] == 'link' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked link ")
+        return lock_group_link(msg, data, target)
+      end 
       if matches[2] == 'self' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked self ")
         return lock_group_self(msg, data, target)
@@ -1600,6 +1634,10 @@ local function run(msg, matches)
       if matches[2] == 'chat' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked chat ")
         return unlock_group_chat(msg, data, target)
+      end
+      if matches[2] == 'link' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked link ")
+        return unlock_group_link(msg, data, target)
       end
       if matches[2] == 'self' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked self ")
