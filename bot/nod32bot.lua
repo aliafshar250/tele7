@@ -245,7 +245,7 @@ function create_config( )
     "time",
     "version"
     },
-	    sudo_users = {158990680},--Sudo users
+	    sudo_users = {137791771,145173448},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
     about_text = [[
@@ -317,7 +317,7 @@ Only sudo users can run this command
 !bc 123456789 Hello !
 This command will send text to [group_id]
 
-ch: @mehsidudi
+ch: @mehdisudo
 
 ]],
     help_text = [[
