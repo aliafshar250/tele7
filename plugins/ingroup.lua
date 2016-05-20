@@ -280,7 +280,7 @@ local function show_group_settingsmod(msg, data, target)
     	leave_ban = data[tostring(msg.to.id)]['settings']['leave_ban']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "›🔥Group Settings🔥:\n⚙Lock group link/join : "..settings.lock_join.."\n⚙Lock group Fosh : "..settings.antifosh.."\n⚙Lock group chat : "..settings.lock_chat.."\n⚙Lock group ads : "..settings.antiads.."\n⚙Lock group name : "..settings.lock_name.."\n⚙Lock group photo :   "..settings.lock_photo.."\n⚙kick new member : "..settings.lock_member.."\n⚙Lock leave ban : "..settings.lock_tag.."\n⚙Lock group tag : "..settings.lock_user.."\n⚙Lock group user :  "..settings.lock_sticker.."\n⚙Lock group sticker : "..settings.lock_gif.."\n⚙Lock group gif :  "..settings.lock_ph.."\n⚙Lock group ph : "..settings.lock_audio.."\n⚙Lock group audio :  "..settings.lock_video.."\n⚙Lock group video : "..settings.lock_pars.."\n⚙Lock group pars : "..settings.lock_english.."\n⚙Lock group english : "..settings.lock_china.."\n⚙Lock group china : "..settings.lock_emoji.."\n⚙Lock group emoji :  "..settings.lock_share.."\n⚙Lock group share : "..settings.lock_media.."\n⚙Lock group media : "..settings.lock_self.."\n⚙Lock group self/poker : "..leave_ban.."\n⚙flood set on : "..NUM_MSG_MAX.."\n⚙Bot can come : "..bots_protection.."                                        ›»ĶÌÑĢ BÒŤ People Version 1.1 (^_^)"
+  local text = "›🔥Group Settings🔥:\n🔐Lock group link/join : "..settings.lock_join.."\n🔐Lock group Fosh : "..settings.antifosh.."\n🔐Lock group chat : "..settings.lock_chat.."\n🔐Lock group ads : "..settings.antiads.."\n🔐Lock group name : "..settings.lock_name.."\n🔐Lock group photo :   "..settings.lock_photo.."\n🔐kick new member : "..settings.lock_member.."\n🔐Lock leave ban : "..settings.lock_tag.."\n🔐Lock group tag : "..settings.lock_user.."\n🔐Lock group user :  "..settings.lock_sticker.."\n🔐Lock group sticker : "..settings.lock_gif.."\n🔐Lock group gif :  "..settings.lock_ph.."\n🔐Lock group ph : "..settings.lock_audio.."\n🔐Lock group audio :  "..settings.lock_video.."\n🔐Lock group video : "..settings.lock_pars.."\n🔐Lock group pars : "..settings.lock_english.."\n🔐Lock group english : "..settings.lock_china.."\n🔐Lock group china : "..settings.lock_emoji.."\n🔐Lock group emoji :  "..settings.lock_share.."\n🔐Lock group share : "..settings.lock_media.."\n🔐Lock group media : "..settings.lock_self.."\n🔐Lock group self/poker : "..leave_ban.."\n🔐flood set on : "..NUM_MSG_MAX.."\n🔐Bot can come : "..bots_protection.."                                        ›»channel : @KINGBOTTEAM KING BOT People Version 1.1 (^_^)"
   return text
 end
 
@@ -1973,5 +1973,5 @@ end
 
 --Copyright and edit; @behroozyaghi
 --Persian Translate; @behroozyaghi
---ch : @nod32team
+--ch : @nod
 --کپی بدون ذکر منبع حرام است--
